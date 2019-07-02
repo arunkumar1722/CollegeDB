@@ -2,7 +2,9 @@ require_relative 'util.rb'
 require_relative 'department_change'
 require_relative 'section_change'
 require_relative 'display_details'
+# CLass for Managing College Database and enrolling students
 class DataManager
+  # Global College HashMap for Student Database
   $college={
       "EEE"=>{
           "A"=>[],
@@ -26,6 +28,8 @@ class DataManager
       }
   }
   $stud=Hash.new
+
+  # Method for Enrolling Students into department
   def enroll(name,dep)
     sec=nil
     $college[dep].each do |k,v|

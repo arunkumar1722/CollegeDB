@@ -2,7 +2,10 @@ require_relative 'util.rb'
 require_relative 'section_change'
 require_relative 'display_details'
 require_relative 'data_manager'
+# Class for Changing Department
 class DepartmentChange
+
+  # Method to Change Department
   def changeDepartment()
     puts "Change Department \nEnter Name:"
     name=gets.chomp
@@ -19,6 +22,7 @@ class DepartmentChange
     DataManager.new.enroll(name,dep_change)
   end
 
+  # Method to Update Department
   def updateDepartment()
     Util.new.sort_sec()
     $college.each do |k,v|

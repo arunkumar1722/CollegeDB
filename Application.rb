@@ -1,8 +1,10 @@
+#!/Users/arunkumarm/.rvm/rubies/ruby-2.6.3/bin/ruby
 require_relative 'util.rb'
 require_relative 'department_change'
 require_relative 'section_change'
 require_relative 'display_details'
 require_relative 'data_manager'
+# Class for running Demo Application
 class Application
   puts "Welcome to  CollegeDB"
   shouldContinue = true

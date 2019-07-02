@@ -2,7 +2,10 @@ require_relative 'util.rb'
 require_relative 'department_change'
 require_relative 'section_change'
 require_relative 'data_manager'
+#Class for Displaying Student Details
 class DisplayDetails
+
+  #Method for Display Details
   def displayDetails()
     puts "Display Details"
     puts "1.Display Full Database \n2.Display Department Details \n3.Display Student Details \n4.Display Every Student Details Roll No Wise"

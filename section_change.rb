@@ -2,7 +2,10 @@ require_relative 'util.rb'
 require_relative 'department_change'
 require_relative 'display_details'
 require_relative 'data_manager'
+# Class for Changing Section of Student
 class SectionChange
+
+  # Method for changing section
   def changeSection()
     puts "Change Section \nEnter Name:"
     name=gets.chomp

@@ -3,7 +3,11 @@ require_relative 'department_change'
 require_relative 'section_change'
 require_relative 'display_details'
 require_relative 'data_manager'
+
+#CLass for Utility functions
 class Util
+
+  #Method to find strength of Department
   def calc_length()
     l=0
     $college.each do |key,value|
@@ -14,6 +18,7 @@ class Util
     return l
   end
 
+  #Method for Sorting each section of dep
   def sort_sec()
     $college.each do |key,value|
       value.each do |k,v|
@@ -24,6 +29,7 @@ class Util
     end
   end
 
+  #Method for finding Department Roll No
   def find_depno(name,dep)
     depNo=1
     $college[dep].each do |key,value|
@@ -42,6 +48,7 @@ class Util
     return depNo
   end
 
+  #Method for finding Section RollNo
   def find_sec(name,dep,sec)
     secNo=1
     $college[dep][sec].each do |e|
@@ -58,6 +65,7 @@ class Util
     return secNo
   end
 
+  #Method to update RollNo of every student
   def update_rollno(name,dep,sec)
     depNo=self.find_depno(name,dep)
     secNo=self.find_sec(name,dep,sec)
