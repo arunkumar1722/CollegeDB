@@ -1,4 +1,3 @@
-
 require_relative 'department_change'
 require_relative 'section_change'
 require_relative 'display_details'
@@ -7,20 +6,9 @@ require_relative 'data_manager'
 #CLass for Utility functions
 class Util
 
-  #Method to find strength of Department
-  def calc_length()
-    l=0
-    $college.each do |key,value|
-      value.each do |k,v|
-        l+=v.length
-      end
-    end
-    return l
-  end
-
   #Method for Sorting each section of dep
-  def sort_sec()
-    $college.each do |key,value|
+  def sort_sec(college)
+    college.each do |key,value|
       value.each do |k,v|
         v.sort!
         #puts "Sorted"
@@ -30,9 +18,9 @@ class Util
   end
 
   #Method for finding Department Roll No
-  def find_depno(name,dep)
+  def find_depno(name,dep,college)
     depNo=1
-    $college[dep].each do |key,value|
+    college[dep].each do |key,value|
       value.each do |x|
         if x!=name
           depNo+=1
@@ -49,9 +37,9 @@ class Util
   end
 
   #Method for finding Section RollNo
-  def find_sec(name,dep,sec)
+  def find_sec(name,dep,sec,college)
     secNo=1
-    $college[dep][sec].each do |e|
+    college[dep][sec].each do |e|
       if(e!=name)
         secNo+=1
       else break
@@ -66,11 +54,16 @@ class Util
   end
 
   #Method to update RollNo of every student
-  def update_rollno(name,dep,sec)
-    depNo=self.find_depno(name,dep)
-    secNo=self.find_sec(name,dep,sec)
+  def update_rollno(name,dep,sec,college)
+    depNo=self.find_depno(name,dep,college)
+    secNo=self.find_sec(name,dep,sec,college)
     rollNo= dep + depNo + sec + secNo
     $stud[rollNo]=[name,dep,sec]
     return rollNo
+  end
+
+  def assign_new_rollno(name,dep,sec,college)
+    last_dep_no=Util.new.find_depno(name,dep,sec,college)
+    last_sec_no=Util.new.find_sec(name,dep,sec,college)
   end
 end
