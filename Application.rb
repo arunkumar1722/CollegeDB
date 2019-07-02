@@ -1,15 +1,9 @@
-require_relative 'dep_eee'
-require_relative 'dep_mech'
-require_relative 'dep_cse'
-require_relative 'dep_civil'
-require_relative 'util'
+require_relative 'util.rb'
+require_relative 'department_change'
+require_relative 'section_change'
+require_relative 'display_details'
+require_relative 'data_manager'
 class Application
-  eee=Array.new
-  mech=Array.new
-  cse=Array.new
-  civil=Array.new
-  data=Hash.new{|h,k| h[k]=Hash.new(&h.default_proc) }
-  stud=Hash.new
   puts "Welcome to  CollegeDB"
   shouldContinue = true
   while shouldContinue
@@ -22,24 +16,26 @@ class Application
       puts "Select Department: EEE MECH CSE CIVIL"
       dep=gets.chomp
       case dep
-      when "EEE","eee"
-        DepEee.new(name).enroll(name,eee,stud,data)
-      when "MECH","mech"
-        DepMech.new(name).enroll(name,mech,stud,data)
-      when "CSE","cse"
-        DepCse.new(name).enroll(name,cse,stud,data)
-      when "CIVIL","civil"
-        DepCivil.new(name).enroll(name,civil,stud,data)
+      when "EEE"
+        DataManager.new.enroll(name,dep)
+      when "MECH"
+        DataManager.new.enroll(name,dep)
+      when "CSE"
+        DataManager.new.enroll(name,dep)
+      when "CIVIL"
+        DataManager.new.enroll(name,dep)
       end
+      DepartmentChange.new.updateDepartment()
     when 2
-      Util.new.changeDepartment(eee,mech,cse,civil)
+      DepartmentChange.new.changeDepartment()
     when 3
-      #Util.new.changeSection(eee,mech,cse,civil)
+      SectionChange.new.changeSection()
     when 4
-      Util.new.display(eee,mech,cse,civil,stud,data)
+      DisplayDetails.new.displayDetails()
     when 5
       puts "Exit"
       shouldContinue=false
     end
+    DepartmentChange.new.updateDepartment()
   end
 end
