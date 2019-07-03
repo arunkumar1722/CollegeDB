@@ -49,3 +49,7 @@ college.each do |k,v|
     end
   end
 end
+
+a=[]
+s="A"
+puts a.length

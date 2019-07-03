@@ -30,7 +30,7 @@ class Application
           "C"=>[],
       }
   }
-  $stud=Hash.new
+  stud=Hash.new
 
   puts "Welcome to  CollegeDB"
   shouldContinue = true
@@ -43,27 +43,21 @@ class Application
       name=gets.chomp
       puts "Select Department: EEE MECH CSE CIVIL"
       department=gets.chomp
-      case department
-      when "EEE"
-        DataManager.new.enroll(name,department,college)
-      when "MECH"
-        DataManager.new.enroll(name,department,college)
-      when "CSE"
-        DataManager.new.enroll(name,department,college)
-      when "CIVIL"
-        DataManager.new.enroll(name,department,college)
-      end
-      DepartmentChange.new.updateDepartment(college)
+      DataManager.new.enroll(name,department,college,stud)
+      #Department.new.updateDepartment(college,stud)
     when 2
-      DepartmentChange.new.changeDepartment(college)
+      Department.new.changeDepartment(college,stud)
     when 3
-      SectionChange.new.changeSection(college)
+      Section.new.changeSection(college,stud)
     when 4
-      DisplayDetails.new.displayDetails(college)
+      Details.new.displayDetails(college,stud)
     when 5
       puts "Exit"
-      shouldContinue=false
+      shouldContinue = false
     end
-    DepartmentChange.new.updateDepartment(college)
+    #Department.new.updateDepartment(college,stud)
   end
 end
+# TODO: Formatting
+# Match exactly as a question
+# Naming conventions

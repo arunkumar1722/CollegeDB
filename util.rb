@@ -11,18 +11,16 @@ class Util
     college.each do |key,value|
       value.each do |k,v|
         v.sort!
-        #puts "Sorted"
-        #puts v
       end
     end
   end
 
   #Method for finding Department Roll No
   def find_depno(name,dep,college)
-    depNo=1
+    depNo=0
     college[dep].each do |key,value|
       value.each do |x|
-        if x!=name
+        if x<=name
           depNo+=1
         else break
         end
@@ -38,9 +36,9 @@ class Util
 
   #Method for finding Section RollNo
   def find_sec(name,dep,sec,college)
-    secNo=1
+    secNo=0
     college[dep][sec].each do |e|
-      if(e!=name)
+      if e<=name
         secNo+=1
       else break
       end
@@ -54,16 +52,14 @@ class Util
   end
 
   #Method to update RollNo of every student
-  def update_rollno(name,dep,sec,college)
+  def update_rollno(name,dep,sec,college,stud)
+    self.sort_sec(college)
     depNo=self.find_depno(name,dep,college)
     secNo=self.find_sec(name,dep,sec,college)
+    dep = dep=="MECH" || dep=="CIVIL"  ? (dep=="MECH" ? "MEC" : "CVL" ) : dep
     rollNo= dep + depNo + sec + secNo
-    $stud[rollNo]=[name,dep,sec]
+    stud[rollNo]=[name,dep,sec,depNo.to_i,secNo.to_i]
     return rollNo
   end
 
-  def assign_new_rollno(name,dep,sec,college)
-    last_dep_no=Util.new.find_depno(name,dep,sec,college)
-    last_sec_no=Util.new.find_sec(name,dep,sec,college)
-  end
 end
