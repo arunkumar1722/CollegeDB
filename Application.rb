@@ -6,37 +6,39 @@ require_relative 'data_manager'
 
 # Class for running Demo Application
 class Application
+
   puts "Welcome to  CollegeDB"
   #Initializes HashMap
-  college=DataManager.new.init_hashmap
+  college = DataManager.new.init_hashmap
+
   #HashMap for storing RollNo for every student
-  stud=Hash.new
-  shouldContinue = true
-  while shouldContinue
+  student = Hash.new
+
+  should_continue = true
+  while should_continue
     puts "Choose Action: \n1.Enroll \n2.Change Department \n3.Change Section \n4.Display Details \n5.Exit"
-    c=gets.to_i
-    case c
+    choice = gets.to_i
+
+    case choice
     when 1
       puts "Enroll \nEnter Name:"
-      name=gets.chomp
+      name = gets.chomp
       puts "Select Department: EEE MECH CSE CIVIL"
-      department=gets.chomp
-      DataManager.new.enroll(name,department,college,stud)
+      department = gets.chomp
+      DataManager.new.enroll(name, department, college, student)
     when 2
-      Department.new.changeDepartment(college,stud)
+      Department.new.change_department(college, student)
     when 3
-      Section.new.changeSection(college,stud)
+      Section.new.change_section(college, student)
     when 4
-      Details.new.displayDetails(college,stud)
+      Details.new.display_details(college, student)
     when 5
       puts "Exit"
-      shouldContinue = false
+      should_continue = false
     end
-    Department.new.updateDepartment(college,stud)
+    Department.new.update_department(college, student)
   end
 end
 
 # TODO:
-# Formatting
 # Match exactly as a question
-# Naming conventions

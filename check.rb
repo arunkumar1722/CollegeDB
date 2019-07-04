@@ -73,7 +73,7 @@ college.each do |dep,sec|
     #puts sec_name
     #puts students
     students.each do |name|
-      #Util.new.update_rollno(x, k, k1, college, stud)
+      #Utilities.new.update_rollno(x, k, k1, college, stud)
       depNo+=1
       secNo+=1
       dep = dep=="MECH" || dep=="CIVIL"  ? (dep=="MECH" ? "MEC" : "CVL" ) : dep

@@ -1,45 +1,41 @@
-require_relative 'util.rb'
+require_relative 'utilities'
 require_relative 'data_manager'
 
 # Class for Changing Department
 class Department
 
   # Method to Change Department
-  def changeDepartment(college,stud)
+  def change_department(college, student)
     puts "Enter RollNo"
-    roll_no=gets.chomp
-    puts "Choose department to change : "
-    dep_change=gets.chomp
-    name=stud[roll_no][0]
-    curr_dep=stud[roll_no][1]
-    sec=stud[roll_no][2]
-    dep_no=stud[roll_no][3]
-    sec_no=stud[roll_no][4]
-    if college[curr_dep][sec].include?name
-        college[curr_dep][sec].delete_at(sec_no-1)
-        puts "Deleted " + name + " of " + curr_dep + " Department" + " of " + sec + "Section"
-        stud.delete(roll_no)
-        puts "Deleted record in stud also"
-    else puts "Student record not found"
+    roll_no = gets.chomp
+    if student.key?(roll_no)
+      puts "Choose department to change : "
+      department_to_change = gets.chomp
+      name = student[roll_no][0]
+      curr_department = student[roll_no][1]
+      section = student[roll_no][2]
+      dep_no = student[roll_no][3]
+      section_no = student[roll_no][4]
+      college[curr_department][section].delete_at(section_no-1)
+      puts "Deleted " + name + " of " + curr_department + " Department" + " of " + section + " Section"
+      DataManager.new.enroll(name, department_to_change, college, student)
+    else puts "Wrong roll no...Student record not found"
     end
-    DataManager.new.enroll(name,dep_change,college,stud)
   end
 
   # Method to Update Department
-  def updateDepartment(college,stud)
-    puts "UD invoked"
-    Util.new.sort_sec(college)
-    stud.clear
-    college.each do |dep,sec|
-      depNo=0
-      sec.each do |sec_name,students|
-        secNo=0
+  def update_department(college, student)
+    Utilities.new.sort_all_section(college)
+    student.clear
+    college.each do |department, section|
+      department_no = 0
+      section.each do |section_name, students|
+        section_no = 0
         students.each do |name|
-          depNo+=1
-          secNo+=1
-          dep=Util.new.shrink_dep(dep)
-          rollNo= dep + Util.new.to_2digit(depNo) + sec_name + Util.new.to_2digit(secNo)
-          stud[rollNo]=[name,dep,sec_name,depNo,secNo]
+          department_no += 1
+          section_no += 1
+          rollNo = Utilities.new.shrink_department(department) + Utilities.new.to_2digit(department_no) + section_name + Utilities.new.to_2digit(section_no)
+          student[rollNo]=[name, department, section_name, department_no, section_no]
         end
       end
     end

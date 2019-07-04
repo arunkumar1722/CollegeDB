@@ -1,4 +1,4 @@
-require_relative 'util.rb'
+require_relative 'utilities'
 
 # Class for Managing College Database and enrolling students
 class DataManager
@@ -6,7 +6,7 @@ class DataManager
   #Method for initializing HashMap for database storage
   def init_hashmap
     #HashMap for Student Database
-    college={
+    college = {
         "EEE"=>{
             "A"=>[],
             "B"=>[],
@@ -32,20 +32,20 @@ class DataManager
   end
 
   # Method for Enrolling Students into department
-  def enroll(name, dep, college, stud)
-    sec=nil
-    college[dep].each do |k,v|
-      if v.length<30
-        v<<name
-        sec=k
+  def enroll(name, department, college, student)
+    section = nil
+    college[department].each do |section_name, students|
+      if students.length < 10
+        students << name
+        section = section_name
         break
       end
     end
-    if sec.nil?
+    if section.nil?
       puts "Department full"
     else
-      rollNo=Util.new.update_rollno(name,dep,sec,college,stud)
-      puts name + " have been enrolled to " + dep + " " + sec + " with roll no " + rollNo
+      roll_no = Utilities.new.update_rollno(name, department, section, college, student)
+      puts name + " have been enrolled to " + department + " " + section + " with roll no " + roll_no
     end
   end
 end

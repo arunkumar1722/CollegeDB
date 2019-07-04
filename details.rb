@@ -2,24 +2,24 @@
 class Details
 
   #Method for Display Details
-  def displayDetails(college,stud)
+  def display_details(college,stud)
     puts "Display Details"
     puts "1.Display Full Database \n2.Display Department Details \n3.Display Student Details \n4.Display Every Student Details Roll No Wise"
-    c=gets.to_i
-    case c
+    choice = gets.to_i
+    case choice
     when 1
       puts college
     when 2
       puts "Select Department: EEE MECH CSE CIVIL"
-      dep=gets.chomp
-      puts college[dep]
+      department = gets.chomp
+      puts college[department]
     when 3
       puts "Enter Student RollNo"
-      rollNo=gets.chomp
-      if stud[rollNo].nil?
+      roll_no = gets.chomp
+      if stud[roll_no].nil?
         puts "Record not found"
       else
-      puts "Name: " +  stud[rollNo][0] + "\nDepartment: " +  stud[rollNo][1] + "\nSection: " +  stud[rollNo][2] + "\nDep No: " +  stud[rollNo][3].to_s + "\nSec No: " +  stud[rollNo][4].to_s
+      puts "Name: " +  stud[roll_no][0] + "\nDepartment: " +  stud[roll_no][1] + "\nSection: " +  stud[roll_no][2] + "\nDep No: " +  stud[roll_no][3].to_s + "\nSec No: " +  stud[roll_no][4].to_s
       end
       when 4
       puts stud

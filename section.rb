@@ -1,32 +1,30 @@
-require_relative 'util.rb'
+require_relative 'utilities'
 
 # Class for Changing Section of Student
 class Section
 
   # Method for changing section
-  def changeSection(college,stud)
+  def change_section(college, student)
     puts "Enter RollNo"
-    roll_no=gets.chomp
-    name=stud[roll_no][0]
-    dep=stud[roll_no][1]
-    sec=stud[roll_no][2]
-    dep_no=stud[roll_no][3]
-    sec_no=stud[roll_no][4]
-    puts "Select sec to change"
-    sec_change=gets.chomp
-    if college[dep][sec].include?name
-      college[dep][sec].delete_at(sec_no-1)
-      puts "Deleted " + name + " of " + dep + " Department " + sec + " Sec"
-      stud.delete(roll_no)
-      puts "Deleted record in stud also"
-    else puts "Student record not found"
+    roll_no = gets.chomp
+    if student.key?(roll_no)
+      puts "Select section to change"
+      sec_to_change = gets.chomp
+      name = student[roll_no][0]
+      department = student[roll_no][1]
+      section = student[roll_no][2]
+      department_no = student[roll_no][3]
+      section_no = student[roll_no][4]
+      if college[department][sec_to_change].length < 10
+        college[department][section].delete_at(section_no-1)
+        puts "Deleted " + name + " of " + department + " Department " + section + " Sec"
+        college[department][sec_to_change] << name
+        roll_no = Utilities.new.update_rollno(name, department, sec_to_change, college, student)
+        puts name + " have been enrolled to " + department + " " + sec_to_change + " with roll no " + roll_no
+      else puts "Section full"
+      end
+    else puts "Wrong rollno....Student record not found"
     end
-    if college[dep][sec_change].empty? || college[dep][sec_change].length < 10
-      college[dep][sec_change]<<name
-    else puts "Section full"
-    end
-    rollNo=Util.new.update_rollno(name,dep,sec_change,college,stud)
-    puts name + " have been enrolled to " + dep + " " + sec_change + " with roll no " + rollNo
   end
 
 end
