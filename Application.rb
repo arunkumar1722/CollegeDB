@@ -1,8 +1,7 @@
 #!/Users/arunkumarm/.rvm/rubies/ruby-2.6.3/bin/ruby
-require_relative 'util.rb'
-require_relative 'department_change'
-require_relative 'section_change'
-require_relative 'display_details'
+require_relative 'department'
+require_relative 'section'
+require_relative 'details'
 require_relative 'data_manager'
 
 # Class for running Demo Application
@@ -44,7 +43,6 @@ class Application
       puts "Select Department: EEE MECH CSE CIVIL"
       department=gets.chomp
       DataManager.new.enroll(name,department,college,stud)
-      #Department.new.updateDepartment(college,stud)
     when 2
       Department.new.changeDepartment(college,stud)
     when 3
@@ -55,7 +53,7 @@ class Application
       puts "Exit"
       shouldContinue = false
     end
-    #Department.new.updateDepartment(college,stud)
+    Department.new.updateDepartment(college,stud)
   end
 end
 # TODO: Formatting

@@ -1,7 +1,4 @@
 require_relative 'util.rb'
-require_relative 'department_change'
-require_relative 'display_details'
-require_relative 'data_manager'
 
 # Class for Changing Section of Student
 class Section
@@ -31,4 +28,5 @@ class Section
     rollNo=Util.new.update_rollno(name,dep,sec_change,college,stud)
     puts name + " have been enrolled to " + dep + " " + sec_change + " with roll no " + rollNo
   end
+
 end

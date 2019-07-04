@@ -1,8 +1,3 @@
-require_relative 'department_change'
-require_relative 'section_change'
-require_relative 'display_details'
-require_relative 'data_manager'
-
 #CLass for Utility functions
 class Util
 
@@ -13,6 +8,16 @@ class Util
         v.sort!
       end
     end
+  end
+
+  #Method for converting single digit to 2 digit
+  def to_2digit(number)
+    if number < 9
+      number="0"+number.to_s
+    else
+      number=number.to_s
+    end
+    return number
   end
 
   #Method for finding Department Roll No
@@ -26,12 +31,7 @@ class Util
         end
       end
     end
-    if depNo < 9
-      depNo="0"+depNo.to_s
-    else
-      depNo=depNo.to_s
-    end
-    return depNo
+    return to_2digit(depNo)
   end
 
   #Method for finding Section RollNo
@@ -43,12 +43,13 @@ class Util
       else break
       end
     end
-    if secNo < 9
-      secNo="0"+secNo.to_s
-    else
-      secNo=secNo.to_s
-    end
-    return secNo
+    return to_2digit(secNo)
+  end
+
+  #Method to shrink Department
+  def shrink_dep(dep)
+    dep = dep=="MECH" || dep=="CIVIL"  ? (dep=="MECH" ? "MEC" : "CVL" ) : dep
+    return dep
   end
 
   #Method to update RollNo of every student
@@ -56,7 +57,7 @@ class Util
     self.sort_sec(college)
     depNo=self.find_depno(name,dep,college)
     secNo=self.find_sec(name,dep,sec,college)
-    dep = dep=="MECH" || dep=="CIVIL"  ? (dep=="MECH" ? "MEC" : "CVL" ) : dep
+    dep=self.shrink_dep(dep)
     rollNo= dep + depNo + sec + secNo
     stud[rollNo]=[name,dep,sec,depNo.to_i,secNo.to_i]
     return rollNo

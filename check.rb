@@ -20,7 +20,8 @@ college={
         "C"=>[],
     }
 }
-l=0
+=begin
+=0
 x="eeea1"
 college.each do |key,value|
   value.each do |k,v|
@@ -53,3 +54,33 @@ end
 a=[]
 s="A"
 puts a.length
+=end
+def to_2digit(number)
+  if number < 9
+    number="0"+number.to_s
+  else
+    number=number.to_s
+  end
+  return number
+end
+stud=Hash.new
+college.each do |dep,sec|
+  depNo=0
+  #puts dep
+  #puts sec
+  sec.each do |sec_name,students|
+    secNo=0
+    #puts sec_name
+    #puts students
+    students.each do |name|
+      #Util.new.update_rollno(x, k, k1, college, stud)
+      depNo+=1
+      secNo+=1
+      dep = dep=="MECH" || dep=="CIVIL"  ? (dep=="MECH" ? "MEC" : "CVL" ) : dep
+      rollNo= dep + to_2digit(depNo) + sec_name + to_2digit(secNo)
+      stud[rollNo]=[name,dep,sec_name,depNo,secNo]
+      #puts name
+    end
+  end
+end
+puts stud

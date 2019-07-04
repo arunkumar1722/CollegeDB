@@ -1,7 +1,4 @@
 require_relative 'util.rb'
-require_relative 'department_change'
-require_relative 'section_change'
-require_relative 'display_details'
 
 # Class for Managing College Database and enrolling students
 class DataManager

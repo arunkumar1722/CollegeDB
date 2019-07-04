@@ -1,6 +1,4 @@
 require_relative 'util.rb'
-require_relative 'section_change'
-require_relative 'display_details'
 require_relative 'data_manager'
 
 # Class for Changing Department
@@ -31,12 +29,20 @@ class Department
   def updateDepartment(college,stud)
     puts "UD invoked"
     Util.new.sort_sec(college)
-    college.each do |k,v|
-      v.each do |k1,v1|
-        v1.each do |x|
-          Util.new.update_rollno(x, k, k1, college, stud)
+    stud.clear
+    college.each do |dep,sec|
+      depNo=0
+      sec.each do |sec_name,students|
+        secNo=0
+        students.each do |name|
+          depNo+=1
+          secNo+=1
+          dep=Util.new.shrink_dep(dep)
+          rollNo= dep + Util.new.to_2digit(depNo) + sec_name + Util.new.to_2digit(secNo)
+          stud[rollNo]=[name,dep,sec_name,depNo,secNo]
         end
       end
     end
   end
+
 end

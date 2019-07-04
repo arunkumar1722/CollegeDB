@@ -1,7 +1,3 @@
-require_relative 'util.rb'
-require_relative 'department_change'
-require_relative 'section_change'
-require_relative 'data_manager'
 #Class for Displaying Student Details
 class Details
 
