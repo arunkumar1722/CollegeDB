@@ -6,32 +6,11 @@ require_relative 'data_manager'
 
 # Class for running Demo Application
 class Application
-  #HashMap for Student Database
-  college={
-      "EEE"=>{
-          "A"=>[],
-          "B"=>[],
-          "C"=>[],
-      },
-      "MECH"=>{
-          "A"=>[],
-          "B"=>[],
-          "C"=>[],
-      },
-      "CSE"=>{
-          "A"=>[],
-          "B"=>[],
-          "C"=>[],
-      },
-      "CIVIL"=>{
-          "A"=>[],
-          "B"=>[],
-          "C"=>[],
-      }
-  }
-  stud=Hash.new
-
   puts "Welcome to  CollegeDB"
+  #Initializes HashMap
+  college=DataManager.new.init_hashmap
+  #HashMap for storing RollNo for every student
+  stud=Hash.new
   shouldContinue = true
   while shouldContinue
     puts "Choose Action: \n1.Enroll \n2.Change Department \n3.Change Section \n4.Display Details \n5.Exit"
