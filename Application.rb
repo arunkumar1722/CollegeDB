@@ -35,6 +35,8 @@ class Application
     Department.new.updateDepartment(college,stud)
   end
 end
-# TODO: Formatting
+
+# TODO:
+# Formatting
 # Match exactly as a question
 # Naming conventions
